@@ -1,0 +1,128 @@
+:root{
+  /* primary */
+  --p: #08612E;
+  --p2: #0C8D43;
+  --p3: #0FBD59;
+  --pl: #d5ecdf;
+
+  /* secondary */
+  --s: #E2263C;
+  --s2: #E95263;
+  --sl: #FFD2D7;
+
+  /* accent */
+  --a: #1A1919;
+  --a2: #343232;
+  --a3: #4F4A4A;
+  --a4: #6A6262;
+}
+
+*{
+  font-family: var(--font-font);
+}
+._card{
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+  padding: 1rem;
+  border-radius: 2rem;
+  background-color: #FFFFFF;
+}
+.roundEdgeSmall{
+  border-radius: 2rem !important;
+}
+/* Classes for background colors */
+.bg-primary {
+  background-color: var(--p) !important;
+  color: #FFFFFF;
+}
+
+.bg-primary2 {
+  background-color: var(--p2) !important;
+  color: #FFFFFF;
+}
+.bg-primary3 {
+  background-color: var(--p3) !important;
+  color: #FFFFFF;
+}
+.bg-pl {
+  background-color: var(--pl) !important;
+  color: var(--p);
+}
+
+.bg-secondary {
+  background-color: var(--s) !important;
+  color: #FFFFFF;
+}
+.bg-secondary2 {
+  background-color: var(--s2) !important;
+  color: #FFFFFF;
+}
+.bg-sl {
+  background-color: var(--sl) !important;
+  color: var(--s);
+}
+
+.bg-accent {
+  background-color: var(--a) !important;
+  color: #FFFFFF;
+}
+.bg-accent2 {
+  background-color: var(--a2) !important;
+  color: #FFFFFF;
+}
+.bg-accent3 {
+  background-color: var(--a3) !important;
+  color: #FFFFFF;
+}
+.bg-accent4 {
+  background-color: var(--a4) !important;
+  color: #FFFFFF;
+}
+
+/* Classes for text colors */
+.text-p {
+  color: var(--p) !important;
+}
+.text-p2 {
+  color: var(--p2) !important;
+}
+.text-p3 {
+  color: var(--p3) !important;
+}
+
+
+.text-s {
+  color: var(--s) !important;
+}
+.text-s2 {
+  color: var(--s2) !important;
+}
+
+.text-a {
+  color: var(--a) !important;
+}
+.text-a2 {
+  color: var(--a2) !important;
+}
+.text-a3 {
+  color: var(--a3) !important;
+}
+.text-a4 {
+  color: var(--a4) !important;
+}
+
+._content{
+  padding: 120px 5%;
+}
+
+.circular_loader_container{
+  width: 25px;
+  height: 25px;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.circular_loader{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
