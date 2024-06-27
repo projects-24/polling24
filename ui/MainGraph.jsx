@@ -86,7 +86,7 @@ let all_paties = [
     {
         "label": "NDC",
         "y": 500,
-        "fill": "#0C8D43"  // Original dark green
+        "fill": "#E95263"  // Original dark green
     },
     {
         "label": "NPP",
@@ -144,15 +144,17 @@ export default class MainChart extends PureComponent {
     <GraphContainer 
     title='All Parties' subtitle="This graphs shows parties in the election and the score in each region."
     bottom={
-            <RowFlexUi justify='center'>
+            <RowFlexUi justify='center' responsiveMedium>
 
                 {
                     all_paties.map(( doc) => (
                       <div className="padding col" key={doc.label}>
-                         <AnimationUi animation='fade-down'> <div className='card hover-up  padding roundEdgeSmall' style={{borderRight:`0.5rem solid ${doc.fill}`}}>
+                         <AnimationUi animation='fade-down'> 
+                            <div className='card hover-up  padding roundEdgeSmall' style={{borderRight:`0.5rem solid ${doc.fill}`}}>
                             <TextUi text={doc.y ? doc.y : doc.x ? doc.x : doc.y} bold heading="h3"/>
                             <TextUi text={doc.label} block size="minified"/>
-                        </div></AnimationUi>
+                        </div>
+                        </AnimationUi>
                       </div>
                     ))
                 }
@@ -161,14 +163,13 @@ export default class MainChart extends PureComponent {
     }
     >
           <BarChart
-          width={1200}
+          width={1100}
           height={300}
           data={all_paties}
          >
           <XAxis dataKey="label" />
           <Tooltip />
-          <Legend />
-          <Bar dataKey="y" fill="#82ca9d" minPointSize={10} />
+          <Bar dataKey="y" fill="#82ca9d"  />
         </BarChart>
     </GraphContainer>
     //             <Grid funcss="padding bt central">

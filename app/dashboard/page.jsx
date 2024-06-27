@@ -144,7 +144,7 @@ export default function page() {
                             </div>
                             <div>
                                 <TextUi text={res.number} heading="h2" color={'dark300'} bold block/>
-                                <TextUi text={res.title}   size='minified' bold color='dark400'/>
+                                <TextUi text={res.title}   size='small' bold color='dark400'/>
                             </div>
                           
                         </div>

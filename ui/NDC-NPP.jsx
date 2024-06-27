@@ -125,7 +125,7 @@ export default class NDC_NPP extends PureComponent {
   render() {
     return (
        <GraphContainer title={"NDC&NPP"} subtitle={"This graphs shows only NDC and NPP scores accross the whole region."}>
-            <AreaChart width={1200} height={300} data={data}>
+            <AreaChart width={1100} height={300} data={data}>
   <defs>
     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
       <stop offset="5%" stopColor="#0C8D43" stopOpacity={0.8}/>
@@ -139,8 +139,8 @@ export default class NDC_NPP extends PureComponent {
   <XAxis dataKey="region" angle={45}/>
   {/* <CartesianGrid strokeDasharray="3 3" /> */}
   <Tooltip />
-  <Area type="monotone" dataKey="NDC" stroke="#08612E" fillOpacity={1} fill="url(#colorUv)" strokeWidth={2} />
-  <Area type="monotone" dataKey="NPP" stroke="#1e40af" fillOpacity={1} fill="url(#colorPv)" />
+  <Area dot={{r:4}} activeDot={{ r: 8 }} type="monotone" dataKey="NDC" stroke="#08612E" fillOpacity={1} fill="url(#colorUv)" strokeWidth={2} />
+  <Area dot={{r:4}} type="monotone" dataKey="NPP" stroke="#1e40af" fillOpacity={1} fill="url(#colorPv)" />
 </AreaChart>
        </GraphContainer>
     );

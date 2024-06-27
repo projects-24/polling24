@@ -13,21 +13,29 @@ export default function NavBar() {
   left={<Logo />}
   center={<RowFlexUi gap={2}>
     <Link href={'/dashboard'}>
-     <PiChartDonut /> <TextUi text="Dashboard" size='small' bold color='dark300' uppercase/>
+    <RowFlexUi gap={0.2}> 
+    <PiChartDonut /> <TextUi text="Dashboard" size='smaller' bold color='dark300' uppercase/>    
+    </RowFlexUi> 
     </Link>
     <Link href={'/stats/regional'}>
-    <PiChartBar /> <TextUi text="Regional Stats" size='small' bold color='dark300' uppercase/>
+   <RowFlexUi gap={0.2}>
+   <PiChartBar /> <TextUi text="Regional Stats" size='smaller' bold color='dark300' uppercase/> 
+   </RowFlexUi> 
     </Link>
     <Link href={'/more'}>
-    <PiTrendUp /> <TextUi text="More Stats" size='small' bold color='dark300' uppercase/>
+   <RowFlexUi gap={0.2}>
+   <PiTrendUp /> <TextUi text="More Stats" size='smaller' bold color='dark300' uppercase/>
+    </RowFlexUi> 
     </Link>
     <Link href={'/turnout'}>
-    <PiProjectorScreen /> <TextUi text="Turn Out" size='small' bold color='dark300' uppercase/>
+   <RowFlexUi gap={0.2}>
+   <PiProjectorScreen /> <TextUi text="Turn Out" size='smaller' bold color='dark300' uppercase/> 
+   </RowFlexUi> 
     </Link>
     {/* <Link href={'/stats/regional'}>
-    <TextUi text="Regional Stats" size='small' bold color='dark300' uppercase/>
+    <TextUi text="Regional Stats" size='smaller' bold color='dark300' uppercase/>
     </Link> */}
   </RowFlexUi>}
-  right={<img src='/ndc.png' height={'60px'} />}
+  right={<img src='/ndc.png' height={'50px'} />}
   />
 }
