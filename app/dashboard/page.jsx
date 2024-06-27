@@ -1,3 +1,4 @@
+import AnimationUi from '@/ui/Animation'
 import CardUi from '@/ui/Card'
 import CircleUi from '@/ui/Circle'
 import Content from '@/ui/Content'
@@ -131,7 +132,9 @@ export default function page() {
               {
                 docs.map((res, index) => (
                     <div className="col sm-12 md-2 lg-2 padding" key={index}>
-                    <CardUi
+                   <AnimationUi>
+                   <CardUi
+                   funcss={'hover-up'}
                     body={
                         <div>
                               <div style={{marginTop:'-2rem'}}>
@@ -147,12 +150,17 @@ export default function page() {
                         </div>
                     }
                     />
+                   </AnimationUi>
                 </div>
                 ))
               }
             </div>
+            <AnimationUi>
             <MainChart data={all_paties}/>
+            </AnimationUi>
+            <AnimationUi>
             <NDC_NPP />
+            </AnimationUi>
         </Content>
     </div>
   )

@@ -1,3 +1,4 @@
+import AnimationUi from '@/ui/Animation'
 import Content from '@/ui/Content'
 import Header from '@/ui/Header'
 import NavBar from '@/ui/NavBar'
@@ -15,18 +16,22 @@ export default function More() {
             <RowFlexUi gap={2}>
                 <div className="col">
                   <Link href={'/stats/polling'}>
-                  <div className="_card">
+                 <AnimationUi>
+                 <div className="_card">
                         <TextUi text="VIEW" color='s' bold size='minified'/>
                         <TextUi text="Polling Station" heading='h1' bold color={'dark400'}/>
                     </div>
+                 </AnimationUi>
                   </Link>
                 </div>
                 <div className="col">
                   <Link href={'/stats/district'}>
-                  <div className="_card">
+                 <AnimationUi>
+                 <div className="_card">
                         <TextUi text="VIEW" color='s' bold size='minified'/>
                         <TextUi text="District Stats" heading='h1' bold color={'dark400'}/>
                     </div>
+                 </AnimationUi>
                   </Link>
                 </div>
             </RowFlexUi>

@@ -78,6 +78,7 @@ import GraphContainer from './GraphContainer';
 import Grid from "funuicss/ui/grid/Grid"
 import Col from "funuicss/ui/grid/Col"
 import RowFlexUi from './RowFlex';
+import AnimationUi from './Animation';
 
 
 
@@ -148,10 +149,10 @@ export default class MainChart extends PureComponent {
                 {
                     all_paties.map(( doc) => (
                       <div className="padding col" key={doc.label}>
-                          <div className='card  padding roundEdgeSmall' style={{borderRight:`0.5rem solid ${doc.fill}`}}>
+                         <AnimationUi animation='fade-down'> <div className='card hover-up  padding roundEdgeSmall' style={{borderRight:`0.5rem solid ${doc.fill}`}}>
                             <TextUi text={doc.y ? doc.y : doc.x ? doc.x : doc.y} bold heading="h3"/>
                             <TextUi text={doc.label} block size="minified"/>
-                        </div>
+                        </div></AnimationUi>
                       </div>
                     ))
                 }

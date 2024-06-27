@@ -6,6 +6,7 @@ import BreadCrumb from 'funuicss/ui/breadcrumb/BreadCrumb'
 import RowFlexUi from './RowFlex'
 import Link from 'next/link'
 import TextUi from './Text'
+import AnimationUi from './Animation'
 export default function Header({title, subtitle, uri}) {
     const [pathname, setpathname] = useState('')
     useEffect(() => {
@@ -14,7 +15,7 @@ export default function Header({title, subtitle, uri}) {
     }, [])
     
   return (
-  <div>
+  <AnimationUi>
       <div className='white text-dark padding-20 roundEdgeSmall'>
     <RowFlexUi>
       <div className='col'>
@@ -84,6 +85,6 @@ export default function Header({title, subtitle, uri}) {
     </RowFlexUi>
     </div>
     <SectionUI gap={4}/>
-  </div>
+  </AnimationUi>
   )
 }

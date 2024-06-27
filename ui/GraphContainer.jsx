@@ -2,9 +2,10 @@ import React from 'react'
 import TextUi from './Text'
 import SectionUI from './section'
 import RowFlexUi from './RowFlex'
+import AnimationUi from './Animation'
 export default function GraphContainer({title, subtitle, bottom, children}) {
   return (
-    <div>
+    <AnimationUi animation='fade-down'>
            <div className='realtive fit _card margin-top-40 padding-20  text-smaller text-bold' >
              <RowFlexUi gap={2} justify='space-between'> 
                 <div>
@@ -24,6 +25,6 @@ export default function GraphContainer({title, subtitle, bottom, children}) {
            <SectionUI gap={2}/>
            {bottom || ''}
            </div>
-    </div>
+    </AnimationUi>
   )
 }

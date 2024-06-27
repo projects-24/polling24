@@ -2,7 +2,7 @@ import { Montserrat, Open_Sans} from "next/font/google";
 import "../assets/globals.css";
 import 'funuicss/css/fun.css'
 import "aos/dist/aos.css"
-import Theme from "@/ui/Theme";
+import "aos/dist/aos.css"
 
 
 const font = Montserrat({ subsets:[], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] });
