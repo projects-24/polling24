@@ -15,11 +15,21 @@ export default function More() {
             <Header title={"Select your Option"} subtitle={"Select between the polling stations and districts to view statistics"}/>
             <RowFlexUi gap={2}>
                 <div className="col">
+                  <Link href={'/stats/regional'}>
+                 <AnimationUi>
+                 <div className="_card">
+                        <TextUi text="VIEW" color='s' bold size='minified'/>
+                        <TextUi text="Regional Stats" heading='h1' bold color={'dark400'}/>
+                    </div>
+                 </AnimationUi>
+                  </Link>
+                </div>
+                <div className="col">
                   <Link href={'/stats/polling'}>
                  <AnimationUi>
                  <div className="_card">
                         <TextUi text="VIEW" color='s' bold size='minified'/>
-                        <TextUi text="Polling Station" heading='h1' bold color={'dark400'}/>
+                        <TextUi text="Constituancy" heading='h1' bold color={'dark400'}/>
                     </div>
                  </AnimationUi>
                   </Link>

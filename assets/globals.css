@@ -26,6 +26,9 @@
   border-radius: 2rem;
   background-color: #FFFFFF;
 }
+.diff_card{
+  border-bottom: 1rem solid var(--s);
+}
 .roundEdgeSmall{
   border-radius: 2rem !important;
 }
@@ -129,4 +132,14 @@
 
 .animations{
   overflow: hidden;
+}
+
+._input{
+  background-color: #F1F1F1;
+  font-weight: bold;
+  color: #343232;
+}
+._progress{
+  padding: 0.2rem;
+  border-radius: 3rem;
 }

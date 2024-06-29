@@ -15,6 +15,6 @@ export default function InputUi
     color='s'
     funcss='margin-bottom-10'
     />
-    <Input label={hint || ''} funcss=' _input roundEdgeSmall' borderless {...rest} fullWidth />
+    <Input label={hint || ''} funcss=' _input roundEdgeSmall text-minified' borderless {...rest} fullWidth />
 </div>
 }

@@ -17,16 +17,16 @@ export default function NavBar() {
     <PiChartDonut /> <TextUi text="Dashboard" size='smaller' bold color='dark300' uppercase/>    
     </RowFlexUi> 
     </Link>
-    <Link href={'/stats/regional'}>
+    <Link href={'/statistics'}>
    <RowFlexUi gap={0.2}>
-   <PiChartBar /> <TextUi text="Regional Stats" size='smaller' bold color='dark300' uppercase/> 
+   <PiChartBar /> <TextUi text="Statistics" size='smaller' bold color='dark300' uppercase/> 
    </RowFlexUi> 
     </Link>
-    <Link href={'/more'}>
+    {/* <Link href={'/more'}>
    <RowFlexUi gap={0.2}>
    <PiTrendUp /> <TextUi text="More Stats" size='smaller' bold color='dark300' uppercase/>
     </RowFlexUi> 
-    </Link>
+    </Link> */}
     <Link href={'/turnout'}>
    <RowFlexUi gap={0.2}>
    <PiProjectorScreen /> <TextUi text="Turn Out" size='smaller' bold color='dark300' uppercase/> 

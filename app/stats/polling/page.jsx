@@ -280,7 +280,7 @@ export default function polling_station() {
     <div>
         <NavBar />
         <Content>
-        <Header title={'Polling Stations'} subtitle={"Check all polling station statistics"}/>
+        <Header title={'Constituancies'} subtitle={"Check all constituancies statistics"}/>
 
         <CardUi 
           funcss='roundEdgeSmall padding-20'
