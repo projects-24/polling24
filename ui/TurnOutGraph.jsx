@@ -70,8 +70,8 @@ const TurnOutGraph = ({right, rawData}) => {
         <AreaChart data={data}>
           <defs>
             <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#E2263C" stopOpacity={0.8} />
-              <stop offset="95%" stopColor="#E2263C" stopOpacity={0} />
+              <stop offset="5%" stopColor="#0C8D43" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#0C8D43" stopOpacity={0} />
             </linearGradient>
           </defs>
           <XAxis dataKey="name" angle={10} />
@@ -81,7 +81,7 @@ const TurnOutGraph = ({right, rawData}) => {
             activeDot={{ r: 10 }}
             type="monotone"
             dataKey="turnout"
-            stroke="#0C8D43"
+            stroke="#E2263C"
             fillOpacity={1}
             fill="url(#colorUv)"
             strokeWidth={2}
