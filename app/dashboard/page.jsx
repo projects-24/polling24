@@ -1,3 +1,4 @@
+'use client'
 import AnimationUi from '@/ui/Animation'
 import CardUi from '@/ui/Card'
 import CircleUi from '@/ui/Circle'
@@ -11,13 +12,18 @@ import UiButton from '@/ui/button'
 import SectionUI from '@/ui/section'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { PiArrowRight, PiChecks, PiChecksDuotone, PiDiamondDuotone, PiGps, PiThumbsDown, PiTrashDuotone, PiUserCheck, PiUserCircleCheck, PiUsersDuotone, PiUsersFour } from 'react-icons/pi'
-
+import Axios from 'axios'
+import { uri } from '@/functions/endpoint'
+import InputUi from '@/ui/input'
+import SectionLoad from '@/ui/SectionLoad'
 const MainChart = dynamic(()=>import("@/ui/MainGraph") ,{ssr:false})
 const NDC_NPP = dynamic(()=>import("@/ui/NDC-NPP") ,{ssr:false})
+const ChartPie = dynamic(()=>import("@/ui/Pie") ,{ssr:false})
 
-export default function page() {
+export default function Dashboard() {
+
   
     const data = {
         'total_ballot_cast': 2000,
@@ -81,128 +87,230 @@ export default function page() {
         }
       
     ]
-    let all_paties = [
-        {
-            label:'NDC',
-            y:500
-        }
-        ,
-        {
-            label:'NPP',
-            y:300
-        }
-        ,
-        {
-            label:'APC',
-            y:300
-        }
-        ,
-        {
-            label:'CPP',
-            y:300
-        }
-        ,
-        {
-            label:'DFP',
-            y:300
-        }
-        ,
-        {
-            label:'DPP',
-            y:300
-        }
-        ,
-        {
-            label:'EGLE',
-            y:300
-        }
-        ,
-        {
-            label:'PNC',
-            y:300
-        }
-        ,
-        {
-            label:'LPG',
-            y:300
-        }
-        ,
-        {
-            label:'NDP',
-            y:300
-        }
-    ]
+    
+
+    let [all_polling, setall_polling] = useState([])
+    const [all_turnOuts, setall_turnOuts] = useState("")
+    const [filteredTurnOuts, setfilteredTurnOuts] = useState("")
+    useEffect(() => {
+        Axios.get(`${uri}/voterturnout`)
+        .then((res) => {
+            const data = res.data;
+            setall_turnOuts(data)
+            const uniquePollingStations = [];
+            data.forEach((mres) => {
+                const pollingStation = {
+                    text: mres.pollingStationName,
+                    value: mres.pollingStationName,
+                };
+                // Check if the station is already in the list
+                if (!uniquePollingStations.some(station => station.value === mres.pollingStationName)) {
+                    uniquePollingStations.push(pollingStation);
+                }
+            });
+            setall_polling(uniquePollingStations);
+        })
+        .catch((err) => console.log(err));
+    }, []);
+const [all_presidential, setall_presidential] = useState('')
+const [all_paliamentary, setall_paliamentary] = useState('')
+const [ndc_npp_presidential, setndc_npp_presidential] = useState("")
+const [ndc_npp_parliamentary, setndc_npp_parliamentary] = useState('')
+useEffect(() => {
+  Axios.get(uri + "/statistics")
+  .then((res) => {
+    const data = res.data;
+    // Convert the object into an array
+   const presedential_arr = Object.entries(data.presidentialTotals).map(([label, value]) => ({
+    label: label,
+    y: Number(value) ,
+        fill: label.toString().toLowerCase() == 'ndc' ? "#E2263C" : 
+          label.toString().toLowerCase() == "npp" ? "#3b82f6" : "#0f766e"
+   }));
+    // Convert the object into an array
+   const paliamentary_arr = Object.entries(data.parliamentaryTotals).map(([label, value]) => ({
+    label: label,
+    y: Number(value) ,
+    fill: label.toString().toLowerCase() == 'haruna iddrisu (ndc)' ? "#E2263C" : 
+          label.toString().toLowerCase() == "fuseine musah (npp)" ? "#3b82f6" : "#0f766e"
+   }));
+
+
+
+   setall_presidential(presedential_arr)
+   setall_paliamentary(paliamentary_arr)
+   setndc_npp_presidential(presedential_arr.filter(fdoc => fdoc.label.toLowerCase() == "ndc" || fdoc.label.toLowerCase() == "npp"))
+   setndc_npp_parliamentary(paliamentary_arr.filter(fdoc => fdoc.label.toLowerCase() == "haruna iddrisu (ndc)" || fdoc.label.toLowerCase() == "fuseine musah (npp)"))
+ 
+}).catch((err) => console.log(err));
+}, [])
+
+const [stats, setstats] = useState("")
+useEffect(() => {
+Axios.get(uri + '/pollstatistics')
+.then(res => {
+setstats(res.data)
+}).catch((err) => console.log(err));
+}, [])
+
+    
   return (
     <div>
         <NavBar />
         <Content>
-         <RowFlexUi gap={1}>
+         <RowFlexUi gap={1} alignItems="flex-start">
             <div className='width-200'>
-                <CardUi funcss={'height-200-min diff_card'}>
-                <div>
-                <div style={{marginTop:'-2rem'}}>
-                <CircleUi size={3}  bg={'bg-sl'} >
-                <PiThumbsDown />
-                </CircleUi>
-                </div>
-                <SectionUI />
-                <div>
-                <TextUi text={data.differences} heading="h2" color={'dark400'} bold block/>
-                <TextUi text={"Differences"} bold color='dark400'/>
-                <SectionUI gap={2} />
-                <TextUi text={"Based on Registered persons(Polling Stations) & Electoral Commision"} size='small'  color='dark400'/>
-                </div>
-
-                </div>
-                </CardUi>
-            </div>
-            <div className="col">
-            <div className='row'>
-              {
-                docs.map((res, index) => (
-                    <div className="col sm-12 md-4 lg-4 padding margin-top-10" key={index}>
-                   <AnimationUi>
-                   <CardUi
-                   funcss={'hover-up'}
-                    body={
-                        <div>
-                              <div style={{marginTop:'-2rem'}}>
-                                <CircleUi size={2.5} bg={res.color} >
-                                    {res.icon}
-                                </CircleUi>
-                            </div>
-                            <div>
-                              <RowFlexUi gap={1} alignItems='flex-end'>
-                                <div className="col">
-                                <TextUi text={res.number} heading="h3" color={'dark300'} bold block/>
-                                <TextUi text={res.title}   size='small' bold color='dark400'/>
-                                </div>
-                                {
-                                    res.btn  &&
-                                    res.btn
-                                }
-                              </RowFlexUi>
-                            </div>
-                          
-                        </div>
-                    }
-                    />
-                   </AnimationUi>
-                </div>
-                ))
+            {
+                ndc_npp_presidential &&
+                <ChartPie title={"Presidential"} data={ndc_npp_presidential}/>
               }
+
             </div>
+      
+            <div className="col">
+           <div className="padding">
+           <TextUi text="Dashboard" heading='h1' bold/>
+           </div>
+            <div className='row'>
+            <div className="col sm-12 md-4 lg-4 padding margin-top-10">
+                 {
+                    stats ? 
+                    <AnimationUi>
+                    <CardUi
+                    funcss={'hover-up'}
+                     body={
+                         <div>
+                               <div style={{marginTop:'-2rem'}}>
+                                 <CircleUi size={2.5} bg={"dark900 text-primary"} >
+                                 <PiUsersDuotone />
+                                 </CircleUi>
+                             </div>
+                             <div>
+                               <RowFlexUi gap={1} alignItems='flex-end'>
+                                 <div className="col">
+                                 <TextUi text={stats.totalVotersBVD} heading="h3" color={'dark300'} bold block/>
+                                 <TextUi text={"Total Ballots"}   size='small' bold color='dark400'/>
+                                 </div>
+                               </RowFlexUi>
+                             </div>
+                           
+                         </div>
+                     }
+                     />
+                    </AnimationUi>
+                    : <>
+                    <SectionLoad />
+                    </>
+                 }
+                </div>
+            <div className="col sm-12 md-4 lg-4 padding margin-top-10">
+                 {
+                    stats ? 
+                    <AnimationUi>
+                    <CardUi
+                    funcss={'hover-up'}
+                     body={
+                         <div>
+                               <div style={{marginTop:'-2rem'}}>
+                                 <CircleUi size={2.5} bg={"dark900 text-primary"} >
+                                 <CircleUi size={2.5} bg={"dark900 text-error"} >
+                                 <PiThumbsDown />,
+                                 </CircleUi>
+                                 </CircleUi>
+                             </div>
+                             <div>
+                               <RowFlexUi gap={1} alignItems='flex-end'>
+                                 <div className="col">
+                                 <TextUi text={stats.totalRejectedPresidential} heading="h3" color={'dark300'} bold block/>
+                                 <TextUi text={"Rejected(Presidential)"}   size='small' bold color='dark400'/>
+                                 </div>
+                               </RowFlexUi>
+                             </div>
+                           
+                         </div>
+                     }
+                     />
+                    </AnimationUi>
+                    : <>
+                    <SectionLoad />
+                    </>
+                 }
+                </div>
+            <div className="col sm-12 md-4 lg-4 padding margin-top-10">
+                 {
+                    stats ? 
+                    <AnimationUi>
+                    <CardUi
+                    funcss={'hover-up'}
+                     body={
+                         <div>
+                               <div style={{marginTop:'-2rem'}}>
+                                 <CircleUi size={2.5} bg={"dark900 text-error"} >
+                                 <PiThumbsDown />
+                                 </CircleUi>
+                             </div>
+                             <div>
+                               <RowFlexUi gap={1} alignItems='flex-end'>
+                                 <div className="col">
+                                 <TextUi text={stats.totalRejectedParliamentary} heading="h3" color={'dark300'} bold block/>
+                                 <TextUi text={"Rejected(Parliamentary)"}   size='small' bold color='dark400'/>
+                                 </div>
+                               </RowFlexUi>
+                             </div>
+                           
+                         </div>
+                     }
+                     />
+                    </AnimationUi>
+                    : <>
+                    <SectionLoad />
+                    </>
+                 }
+                </div>
+        
+            </div>
+            </div>
+            <div className='width-200'>
+            {
+                ndc_npp_parliamentary &&
+                <ChartPie title={"Parliamentary"} data={ndc_npp_parliamentary}/>
+              }
+
             </div>
          </RowFlexUi>
             <AnimationUi>
-            <MainChart data={all_paties}/>
+                {
+                    all_presidential &&
+                    <MainChart title="Presidential" data={all_presidential}/>
+                }
             </AnimationUi>
             <AnimationUi>
-                <TurnOutGraph />
+                {
+                    all_paliamentary &&
+                    <MainChart title="Parliamentary Seats" data={all_paliamentary}/>
+                }
             </AnimationUi>
             <AnimationUi>
+              {
+                all_polling.length > 0 ?
+                <TurnOutGraph
+                rawData={filteredTurnOuts || all_turnOuts[0]}
+                right={<InputUi
+                    label="Polling Station"
+                    select
+                    options={all_polling}
+                    onChange={(e) => {
+                    const selectedStation = all_turnOuts.find(station => station.pollingStationName === e.target.value);
+                    setfilteredTurnOuts(selectedStation);
+                    }}
+                  />}
+                />
+                : ""
+              }
+            </AnimationUi>
+            {/* <AnimationUi>
             <NDC_NPP />
-            </AnimationUi>
+            </AnimationUi> */}
         </Content>
     </div>
   )
