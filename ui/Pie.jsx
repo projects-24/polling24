@@ -30,7 +30,7 @@ const ChartPie = ({data , title}) => {
             label={({ name, percent }) =>
               `${name}: ${(percent * 100).toFixed(1)}%`
             }
-            labelLine={false}
+            // labelLine={false}
             paddingAngle={5}
           >
             {data.map((entry, index) => (

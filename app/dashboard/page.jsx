@@ -125,14 +125,14 @@ useEffect(() => {
     label: label,
     y: Number(value) ,
         fill: label.toString().toLowerCase() == 'ndc' ? "#E2263C" : 
-          label.toString().toLowerCase() == "npp" ? "#3b82f6" : "#0f766e"
+          label.toString().toLowerCase() == "npp" ? "#08612E" : "#0f766e"
    }));
     // Convert the object into an array
    const paliamentary_arr = Object.entries(data.parliamentaryTotals).map(([label, value]) => ({
     label: label,
     y: Number(value) ,
     fill: label.toString().toLowerCase() == 'haruna iddrisu (ndc)' ? "#E2263C" : 
-          label.toString().toLowerCase() == "fuseine musah (npp)" ? "#3b82f6" : "#0f766e"
+          label.toString().toLowerCase() == "fuseine musah (npp)" ? "#08612E" : "#0f766e"
    }));
 
 
