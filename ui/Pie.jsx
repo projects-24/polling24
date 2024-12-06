@@ -37,10 +37,10 @@ const ChartPie = ({data , title}) => {
               <Cell key={`cell-${index}`} fill={entry.fill} />
             ))}
           </Pie>
-          {/* <Tooltip formatter={(value) => `${value} votes`} />
+          <Tooltip itemStyle={{fontSize:"0.8rem", fontWeight:600}} formatter={(value) => `${value}`} />
 
-          <Tooltip formatter={(value) => `${value} votes`} />
-             */}
+          <Tooltip itemStyle={{fontSize:"0.8rem", fontWeight:600}}  formatter={(value) => `${value}`} />
+            
         </PieChart>
       </ResponsiveContainer>
       {
